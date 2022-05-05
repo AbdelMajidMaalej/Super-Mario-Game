@@ -21,15 +21,16 @@ public:
     void SetText(string ch,Mario& mario)
     {
         posx = mario.getsp().getPosition().x;
-        if (posx > 400)
-        {
+        if (posx < 400)
+            txt.setPosition(90, 20);
+        if (posx>2000)
+            txt.setPosition(1677, 20);
+        if ((posx<2000)&&(posx>400))
             txt.setPosition(Vector2f(posx - 310, 20.f));
-        }
-        else txt.setPosition(90, 20);
         txt.setFont(font);
         txt.setString(ch);
         txt.setCharacterSize(32);
-        txt.setFillColor(Color(50, 50, 50));  
+        txt.setFillColor(Color(50, 50, 50));
     }
     void drawit(RenderWindow& window)
     {

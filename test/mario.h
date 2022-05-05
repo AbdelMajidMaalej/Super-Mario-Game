@@ -118,7 +118,7 @@ public:
 		}
 		//collision left
 		collf = false;
-		for (l =3; l < 32; l++)
+		for (l =5; l < 32; l++)
 		{
 			cl = (((bottom - l) / 32) * 75) + ((left - 5) / 32);
 			if (level[cl] == 7 || level[cl] == 1 || level[cl] == 3 || level[cl] == 4 || level[cl] == 5 || level[cl] == 6 || level[cl] == 11 || level[cl] == 12 || level[cl] == 13 || level[cl] == 14 || level[cl] == 2)
@@ -213,7 +213,6 @@ public:
 						cof += 0.025;
 						cout << cof << endl;
 					}
-
 				}
 				if ((velocity.y < ground) && (canjump))
 				{
@@ -247,7 +246,6 @@ public:
 					}
 					else
 						velocity.y += gravity * 1.5f * deltatime;
-
 				}
 			}
 		}
@@ -267,7 +265,6 @@ public:
 	{
 		sp.setPosition(velocity);
 		window.draw(sp);
-		cout << velocity.x << endl;
 	}
 	bool isdead()
 	{

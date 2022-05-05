@@ -9,7 +9,7 @@ float deltatime;
 Mario mario;
 View view;
 Texture cube, adv;
-Sprite sp1,sp2,sp3,sp4,sp5,sp6;
+Sprite sp1, sp2, sp3, sp4, sp5, sp6;
 Clock mongela;
 Music music;
 int main()
@@ -42,7 +42,7 @@ int main()
     };
     Texture backgd;
     Sprite sbackgd;
-    if (!backgd.loadFromFile("./res/mario0.jpg"))
+    if (!backgd.loadFromFile("./res/mario0.png"))
         cout << "Un probleme lors du chargement du bg" << endl;
     else
         cout << "chargement" << endl;
@@ -71,32 +71,32 @@ int main()
     Pausegame pause(window);
     //yasmine
     mainmenu menu;
-    bool newgame=false;
+    bool newgame = false, aboutus = false;
     Text txt, tx;
     Font  font;
     int y = 0;
     int life = 5;
     int world = 0;
     int player = 0;
-    float heure=0;
+    float heure = 0;
     //end_yasmine
     while (window.isOpen())
     {
         //yasmine
-        scoremenu.SetText("MARIO   " + to_string(player) + "          score  " + to_string(score) + "         COIN    " + to_string(coin) + " - " + to_string(5) + "         TIME   " + to_string(int(heure)),mario);
+        scoremenu.SetText("MARIO   " + to_string(player) + "          score  " + to_string(score) + "         COIN    " + to_string(coin) + " - " + to_string(5) + "         TIME   " + to_string(int(heure)), mario);
         deltatime = mongela.getElapsedTime().asSeconds();
         mongela.restart();
         while (window.pollEvent(event))
         {
             if (event.type == Event::KeyReleased && event.key.code == Keyboard::Up)
             {
-                menu.moveup(newgame);
+                menu.moveup(newgame, aboutus);
             }
             if (event.type == Event::KeyReleased && event.key.code == Keyboard::Down)
             {
-                menu.movedown(newgame);
+                menu.movedown(newgame, aboutus);
             }
-            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Return && menu.getitempressed() == 0)
+            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Return && menu.getitempressed() == 0 && !(aboutus))
             {
                 cout << "new game  is pressed" << endl;
                 newgame = true;
@@ -104,9 +104,17 @@ int main()
             }
             if (event.type == Event::KeyReleased && event.key.code == Keyboard::Return && menu.getitempressed() == 1)
             {
-                cout << "settings is pressed" << endl;
+                if (!aboutus)
+                {
+                    cout << "aboutus is pressed" << endl;
+                    aboutus = true;
+                }
+                else
+                {
+                    aboutus = false;
+                }
             }
-            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Return && menu.getitempressed() == 2)
+            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Return && menu.getitempressed() == 2 && !(aboutus))
             {
                 window.close();
             }
@@ -115,7 +123,7 @@ int main()
             {
                 window.close();
             }
-            pause.update(event,mario,music);
+            pause.update(event, mario, music);
         }
         if (newgame)
         {
@@ -143,7 +151,7 @@ int main()
         {
             window.clear();
             window.draw(sbackgd);
-            menu.drawmenu(window);
+            menu.drawmenu(window, aboutus);
             window.display();
         }
     }
