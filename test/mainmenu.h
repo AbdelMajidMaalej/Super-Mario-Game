@@ -11,10 +11,10 @@ class mainmenu
 private:
 	int selecteditm;
 	Font font;
-	Text menu[MAX],karim,yasmine,majid,parag,retour;
+	Text menu[MAX], karim, yasmine, majid, parag, retour;
 	SoundBuffer click;
 	Sound clicksound;
-	
+
 public:
 	mainmenu()
 	{
@@ -47,12 +47,12 @@ public:
 		parag.setFont(font);
 		parag.setCharacterSize(30);
 		parag.setFillColor(Color::Black);
-		parag.setPosition(800 / 2 - 330,124);
+		parag.setPosition(800 / 2 - 330, 124);
 		parag.setString("Ce Jeu intitule << Smart Mario >> \n developpe en C++ et SFML par \n des eleves ingenieurs de l'ENSI\n\n\n\n\n\n            dans le cadre \n       d'un projet de classe ");
 		//Karim
 		karim.setFont(font);
 		karim.setCharacterSize(35);
-		karim.setFillColor(Color::Color(50,50,200));
+		karim.setFillColor(Color::Color(50, 50, 200));
 		karim.setPosition(800 / 2 - 270, 244);
 		karim.setString("    Karim Hmidi");
 		//yasmine
@@ -73,13 +73,13 @@ public:
 		retour.setFillColor(Color::White);
 		retour.setPosition(800 / 2 - 220, 494);
 		retour.setString("RETURN");
-		
+
 
 	}
 	~mainmenu()
 	{
 	}
-	void moveup(bool test,bool aboutus)
+	void moveup(bool test, bool aboutus)
 	{
 		if (!aboutus)
 		{
@@ -95,7 +95,7 @@ public:
 			}
 		}
 	}
-	void movedown(bool test,bool aboutus)
+	void movedown(bool test, bool aboutus)
 	{
 		if (!aboutus)
 		{
@@ -109,9 +109,9 @@ public:
 				}
 				clicksound.play();
 			}
-		}	
+		}
 	}
-	void drawmenu(RenderWindow& window,bool test)
+	void drawmenu(RenderWindow& window, bool test)
 	{
 		if (!test)
 		{

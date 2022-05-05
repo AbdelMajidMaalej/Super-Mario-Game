@@ -31,6 +31,10 @@ public:
         txt.setString(ch);
         txt.setCharacterSize(32);
         txt.setFillColor(Color(50, 50, 50));
+        if (paused)
+        {
+            txt.setFillColor(Color::White);
+        }
     }
     void drawit(RenderWindow& window)
     {

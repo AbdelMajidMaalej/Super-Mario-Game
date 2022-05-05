@@ -9,7 +9,7 @@ using namespace std;
 using namespace sf;
 Vector2i anim(1, 1);
 Clock c;
-bool canjump = true, isjumping = false, isfalling = false, collr = false, collf = false, collj = false, facingright = true, death = false, deathjumping = false, deathfalling = false, under = false;
+bool canjump = true, isjumping = false, isfalling = false, collr = false, collf = false, collj = false, facingright = true, death = false, deathjumping = false, deathfalling = false, under = false, quiz = false;
 float speed = 200, gravity = 130, ground = 401, jumptime, jumpduration = 0.45;
 float cof = 1;
 int l, cr, crcoin, cl, cb, coin=0;
@@ -48,7 +48,7 @@ public:
 		int i;
 		int top = sp.getGlobalBounds().top, left = sp.getGlobalBounds().left, right = left + 32, bottom = top + 48;
 		//collision bottom
-		for (l = 5; l < 27; l++)
+		for (l = 7; l < 27; l++)
 		{
 			cb = (((bottom + 7) / 32) * 75) + ((left +l) / 32);
 			if (level[cb] == 3 || level[cb] == 1 ||  level[cb] == 2 || level[cb] == 7 || level[cb] == 4 || level[cb] == 5 || level[cb] == 6 || level[cb] == 13 || level[cb] == 14)
@@ -103,6 +103,7 @@ public:
 			isfalling = true;
 			if (level[ctnc] == 3 || level[ctnc] == 4 || level[ctnc] == 5)
 			{
+				quiz = true;
 				level[ctnc] = 2;
 				level[ctnc - 75] = 17;
 			}
