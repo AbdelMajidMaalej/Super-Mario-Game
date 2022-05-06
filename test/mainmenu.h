@@ -14,10 +14,18 @@ private:
 	Text menu[MAX], karim, yasmine, majid, parag, retour;
 	SoundBuffer click;
 	Sound clicksound;
+	Texture backgd;
+	Sprite sbackgd;
 
 public:
 	mainmenu()
 	{
+		if (!backgd.loadFromFile("./res/mario0.png"))
+			cout << "Un probleme lors du chargement du bg" << endl;
+		else
+			cout << "chargement" << endl;
+		sbackgd.setTexture(backgd);
+		backgd.setSmooth(true);
 		if (!click.loadFromFile("./res/sound_ex_machina_Button_Blip.ogg"))
 			cout << "probleme avec le sound" << endl;
 
@@ -79,6 +87,31 @@ public:
 	~mainmenu()
 	{
 	}
+	void update(Mario& mario, Music& music,float x)
+	{
+		if (mario.isdead())
+		{
+
+			if (music.getStatus() == SoundStream::Paused)
+				music.play();
+			else if (music.getStatus() == SoundStream::Playing)
+				music.pause();
+		}
+		if (x > 400)
+		{
+			sbackgd.setPosition(Vector2f(x - 382, 00.f));
+			menu[0].setPosition(x - 240, 174);
+			menu[1].setPosition(x - 240, 304);
+			menu[2].setPosition(x - 190, 434);
+		}
+		if (x > 2000)
+		{
+			sbackgd.setPosition(Vector2f(2000 - 400, 00.f));
+			menu[0].setPosition(2000 - 240, 174);
+			menu[1].setPosition(2000 - 240, 304);
+			menu[2].setPosition(2000 - 190, 434);
+		}
+	}
 	void moveup(bool test, bool aboutus)
 	{
 		if (!aboutus)
@@ -115,6 +148,7 @@ public:
 	{
 		if (!test)
 		{
+			window.draw(sbackgd);
 			for (int i = 0; i < MAX; i++)
 			{
 				window.draw(menu[i]);

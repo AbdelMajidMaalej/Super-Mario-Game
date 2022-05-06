@@ -12,10 +12,12 @@ Clock c;
 bool canjump = true, isjumping = false, isfalling = false, collr = false, collf = false, collj = false, facingright = true, deathjumping = false, deathfalling = false, under = false, quiz = false;
 float speed = 200, gravity = 130, ground = 401, jumptime, jumpduration = 0.45;
 float cof = 1;
-int l, cr, crcoin, cl, cb, coin=0;
+int l, cr, crcoin, cl, cb;
 class Mario
 {
 private:
+	int score = 0;
+	int coin = 0;
 	Texture tex;
 	Sprite sp;
 	Vector2f velocity;
@@ -24,6 +26,35 @@ private:
 	Sound jumpmusic;
 public:
 	bool death = false;
+	void mariorestart(RenderWindow& window)
+	{
+		resetscore();
+		resetcoin();
+		velocity.x = 100; ground=401;
+		velocity.y = ground;
+		draw(window);
+		sp.setTextureRect(IntRect(0, 0, 32, 48));
+	}
+	void resetscore()
+	{
+		score = 0;
+	}
+	int getscore()
+	{
+		return score;
+	}
+	void resetcoin()
+	{
+		coin = 0;
+	}
+	void addscore()
+	{
+		score += 100;
+	}
+	int getcoin()
+	{
+		return coin;
+	}
 	Mario()
 	{
 		if (!jumpmus.loadFromFile("./res/jump.ogg"))
@@ -213,7 +244,6 @@ public:
 					{
 						velocity.y += gravity * 1.5f * deltatime * cof;
 						cof += 0.025;
-						cout << cof << endl;
 					}
 				}
 				if ((velocity.y < ground) && (canjump))

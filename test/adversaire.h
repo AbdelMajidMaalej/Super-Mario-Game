@@ -8,7 +8,6 @@ using namespace std;
 using namespace sf;
 float gr = 415, gra = 130;
 Clock clo;
-int score = 0;
 class adversaire
 {
 private:
@@ -42,7 +41,7 @@ public:
 			clo.restart();
 		}
 	}
-	void collision(Mario& mario)
+	void collision(Mario& mario,int score)
 	{
 		if (((adsp.getPosition().y - 16) - (mario.getsp().getPosition().y + 24) < 20) && (abs(adsp.getPosition().x-mario.getsp().getPosition().x+16 )<16)&& !mort&& !mario.isdead())
 		{
@@ -50,16 +49,16 @@ public:
 			{
 				adsp.setTextureRect(IntRect(2 * 32, 0, 32, 32));
 				mort = true;
-				score += 100;
+				mario.addscore();
 			}
 			else mario.dead();
 		}
 	}
-	void update(int level[], float deltatime,Mario& mario,int x0,int x1,bool pause)
+	void update(int level[], float deltatime,Mario& mario,int x0,int x1,bool pause,int score)
 	{
 		if (!pause)
 		{
-			collision(mario);
+			collision(mario,score);
 			if (!mort)
 			{
 				if (fr)
