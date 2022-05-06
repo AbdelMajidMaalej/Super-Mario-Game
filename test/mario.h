@@ -9,7 +9,7 @@ using namespace std;
 using namespace sf;
 Vector2i anim(1, 1);
 Clock c;
-bool canjump = true, isjumping = false, isfalling = false, collr = false, collf = false, collj = false, facingright = true, death = false, deathjumping = false, deathfalling = false, under = false, quiz = false;
+bool canjump = true, isjumping = false, isfalling = false, collr = false, collf = false, collj = false, facingright = true, deathjumping = false, deathfalling = false, under = false, quiz = false;
 float speed = 200, gravity = 130, ground = 401, jumptime, jumpduration = 0.45;
 float cof = 1;
 int l, cr, crcoin, cl, cb, coin=0;
@@ -23,6 +23,7 @@ private:
 	SoundBuffer jumpmus;
 	Sound jumpmusic;
 public:
+	bool death = false;
 	Mario()
 	{
 		if (!jumpmus.loadFromFile("./res/jump.ogg"))

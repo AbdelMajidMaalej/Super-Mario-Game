@@ -1,3 +1,5 @@
+#ifndef QUIZ_H
+#define QUIZ_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string.h>
@@ -17,7 +19,7 @@ private:
 	bool rep=false, fin = false;
 public:
 	const int max = 6;
-	Quiz(float width, float height, String ch[7], int ind, String ques[6][6])
+	Quiz(float width, float height, String ch[7], String ques[6][6])
 	{
 		time.setFont(font);
 		time.setString("0");
@@ -197,3 +199,4 @@ public:
 		return (selecteditemindex);
 	}
 };
+#endif;

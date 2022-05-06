@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef SCOREMENU_H
+#define SCOREMENU_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace std;
