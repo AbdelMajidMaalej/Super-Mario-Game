@@ -148,7 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="adversaire.h" />
-    <ClInclude Include="main.h" />
+    <ClInclude Include="scoremenu.h" />
     <ClInclude Include="mainmenu.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="mario.h" />

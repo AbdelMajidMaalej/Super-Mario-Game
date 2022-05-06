@@ -30,7 +30,7 @@
     <ClInclude Include="mainmenu.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
+    <ClInclude Include="scoremenu.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="quiz.h">

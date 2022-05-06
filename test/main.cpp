@@ -2,7 +2,7 @@
 #include "map.h"
 #include "pause.h"
 #include "mainmenu.h"
-#include "main.h"
+#include "scoremenu.h"
 #include "quiz.h"
 //yasmine
 //end-yasmine
