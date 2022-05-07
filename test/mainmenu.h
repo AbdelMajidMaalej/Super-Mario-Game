@@ -22,8 +22,6 @@ public:
 	{
 		if (!backgd.loadFromFile("./res/mario0.png"))
 			cout << "Un probleme lors du chargement du bg" << endl;
-		else
-			cout << "chargement" << endl;
 		sbackgd.setTexture(backgd);
 		backgd.setSmooth(true);
 		if (!click.loadFromFile("./res/sound_ex_machina_Button_Blip.ogg"))

@@ -10,16 +10,17 @@ class Quiz
 {
 private:
 	int selecteditemindex = 2,n=-1;
+	int bonnereponse=0;
 	Font font;
 	Text menu[7],reponse,time;
 	Texture bg;
 	Sprite sbg;
 	RectangleShape rec;
 	int width = 800, height = 604,indquiz=0;
-	bool rep=false, fin = false;
+	bool rep = false, fin = true;
 public:
-	const int max = 6;
-	Quiz(float width, float height, String ch[7], String ques[6][6])
+	const int max = 7;
+	Quiz(float width, float height, String ques[10][7])
 	{
 		time.setFont(font);
 		time.setString("0");
@@ -37,7 +38,7 @@ public:
 		bg.setSmooth(true);
 		sbg.setTexture(bg);
 		sbg.setPosition(0, 0);
-		for (int i = 0; i < max; i++)
+		for (int i = 0; i < 7; i++)
 		{
 			menu[i].setFont(font);
 			menu[i].setString(ques[0][i]);
@@ -57,18 +58,22 @@ public:
 				menu[i].setPosition(Vector2f(width / 20, height / (max + 1) * i));
 			case 6:
 				menu[i].setPosition(Vector2f(width / 20, height / (max + 1) * i));
+			case 7:
+				menu[i].setPosition(Vector2f(width / 20, height / (max + 1) * i));
 			}
 			menu[2].setFillColor(Color::Blue);
-
 		}
 	}
-	void repondre(int i,RenderWindow &window)
+	void repondre(int i,RenderWindow &window,bool final)
 	{
 		rep = true;
 		if (getselected() == i)
 		{
 			menu[getselected()].setFillColor(Color::Green);
 			n++;
+			if (final)
+				bonnereponse++;
+			cout << bonnereponse << endl;
 		}
 		else 
 			menu[getselected()].setFillColor(Color::Red);
@@ -77,36 +82,41 @@ public:
 	{
 		if (rep)
 		{
-			if (heure > clicktime+4)
+			if (heure > clicktime+3)
 			{
 				quiz = false;
 				rep = false;
-				indquiz++;
+					indquiz++;
 				heure = 0;
 				fin = true;
+				cout << "majda" << endl;
 			}
 		}
 		else
 		{	
 			clicktime = heure;
-			if ((heure > 10) && (!rep))
+			if ((heure > 10))
 			{
 				indquiz++;
 				quiz = false;
 				heure = 0;
 				fin = true;
+				cout << "majda" << endl;
 			}
 		}
 	}
-	void Settext(String ques[6][6],float x)
+	void Settext(String ques[10][7],float x)
 	{
-		if (x < 400)
-			x = 350;
-		if (x > 1600)
-			x = 1900;
 		if (fin)
 		{
-			sbg.setPosition(x - 350, 0);
+			if (x < 400)
+				x = 385;
+			if ((x > 1900) && (x<2100))
+				x = 1985;
+			if ((x > 2200))
+				x = 1985;
+			sbg.setPosition(x - 385, 0);
+			cout << "kimoooooooo" << endl;
 			for (int i = 0; i < max; i++)
 			{
 				menu[i].setFont(font);
@@ -114,9 +124,11 @@ public:
 				menu[i].setCharacterSize(24);
 				switch (i)
 				{
+					
 				case 0:
 				{
 					menu[i].setPosition(Vector2f(x - 130, height / (max + 1) * i));
+					cout << "yasmine" << endl;
 					break;
 				}
 				case 1:
@@ -156,6 +168,12 @@ public:
 					menu[i].setFillColor(Color::Black);
 					break;
 				}
+				case 7:
+				{
+					menu[i].setPosition(Vector2f(x - 350, height / (max + 1) * i));
+					menu[i].setFillColor(Color::Black);
+					break;
+				}
 				}
 				selecteditemindex = 2;
 			}
@@ -164,19 +182,35 @@ public:
 			fin = false;
 		}
 	}
-	void drawit(RenderWindow& window,float heure)
+	void finalquiz(String ques[10][7], float x,RenderWindow &window,float& heure,bool& final,Mario mario)
+	{
+		if (indquiz < 5)
+			indquiz = 5;
+			window.clear();
+			Settext(ques, x);
+			drawit(window, heure,mario);
+			arreter(heure);
+			if (indquiz==10)
+				final = false;
+	}
+	void drawit(RenderWindow& window,float heure,Mario mario)
 	{
 		window.draw(sbg);
-		for (int i = 0; i < max; i++)
+		for (int i = 0; i < max-1; i++)
 		{
 			window.draw(menu[i]);
 		}
-		time.setString(to_string(int(heure)));
+		if (!rep)
+			time.setString(to_string(int(heure)));
 		window.draw(time);
+		if (mario.getcoin() != 0)
+		{
+			window.draw(menu[6]);
+			mario.subcoin();;
+		}
 	}
 	void moveup()
 	{
-		cout << "temchy" << endl;
 		if (selecteditemindex - 1 >= 2)
 		{
 			menu[selecteditemindex].setFillColor(Color::Black);
@@ -186,7 +220,7 @@ public:
 	}
 	void movedown()
 	{
-		cout << "temchy" << endl;
+
 		if (selecteditemindex + 1 < max)
 		{
 			menu[selecteditemindex].setFillColor(Color::Black);

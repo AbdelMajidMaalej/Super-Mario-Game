@@ -9,7 +9,7 @@ using namespace std;
 using namespace sf;
 Vector2i anim(1, 1);
 Clock c;
-bool canjump = true, isjumping = false, isfalling = false, collr = false, collf = false, collj = false, facingright = true, deathjumping = false, deathfalling = false, under = false, quiz = false;
+bool canjump = true, isjumping = false, isfalling = false, collr = false, collf = false, collj = false, facingright = true, deathjumping = false, deathfalling = false, under = false, quiz = false, finalquiz = false;
 float speed = 200, gravity = 130, ground = 401, jumptime, jumpduration = 0.45;
 float cof = 1;
 int l, cr, crcoin, cl, cb;
@@ -50,6 +50,10 @@ public:
 	void addscore()
 	{
 		score += 100;
+	}
+	void subcoin()
+	{
+		coin--;
 	}
 	int getcoin()
 	{
@@ -161,7 +165,7 @@ public:
 		{
 			ground = 1000;
 		}
-		if (velocity.y > 900)
+		if ((velocity.y > 900)&&(!under))
 			death = true;
 		//collision coin
 		for (int l = 0; l < 25; l++)
@@ -198,6 +202,8 @@ public:
 					{
 						velocity.y += speed * deltatime;
 					}
+					if ((under)&&(velocity.y > ground))
+						finalquiz = true;
 				}
 				if (sp.getPosition().x >= 0.0f && Keyboard::isKeyPressed(Keyboard::Left) && !(collf))
 				{

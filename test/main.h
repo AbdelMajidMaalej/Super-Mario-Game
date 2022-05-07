@@ -1,4 +1,4 @@
-#ifndef MAIN_H
+ï»¿#ifndef MAIN_H
 #define MATH_H
 #include "adversaire.h"
 #include "map.h"
@@ -9,16 +9,20 @@
 class Game
 {
 private:
-	int vrai[6] = { 4,2,3,3,5,4 };
-	String ch[6][6] = { {"\n                    Voilà votre quiz :", "\n          Question : Quel est l'âge de l'Univers?", "\n1- 6 000 ans", "\n2- 4,6 milliards d'années", "\n3- 13,7 milliards d'années", "\n4- L'Univers est éternel et existe depuis toujours."},//4 3- 13,7 milliards d'années
-	{"\n                    Voilà votre quiz :", "\n          Question : Toutes les espèces vivantes sur \n Terre possèdent :", "\n\n 1- de l ADN", "\n\n 2- les mêmes gènes (le même génome)", "\n\n3- un animal de compagnie", "\n\n4- Toutes ces réponses."},//2 de l ADN
-	{"\n                    Voilà votre quiz :", "\n        Question : Lequel des langages informatiques \nsuivants est utilisé pour l intelligence artificielle?", "\n\n1- PROLOG", "\n\n2- C", "\n\n3- FORTRAN", "\n\n4- COBOL"},//3  C
-	{"\n                    Voilà votre quiz :", "\n        Question : Le microprocesseur a été introduit \ndans quelle génération d’ordinateur?", "\n\n1- Deuxième génération", "\n\n2- Troisième génération", "\n\n3- en 1942", "\n\n4- Quatrième génération"},//3 Troisième génération
-	{"\n                    Voilà votre quiz :", "\n          Complèter : GUI signifie _______?", "\n1- Graph Use Interface", "\n2- Graphical Universal Interface", "\n3- Graphical User Interface", "\n4-Graphical Unique Interface"},//5 4-Graphical Unique Interface
-	{"\n                    La question du passage au \n                            niveau suivant : ", "     \n\nQuestion: Combien de temps a duré la guerre \nde 100 ans ?", "\n\n\n1- 112", "\n\n\n2- 100", "\n\n\n3- 116", "\n\n\n4- 97"}//4 116
-	};
-	String indices[7] = { "\n                      Les indices gagnés qui vous aident :" , "\n- Premier indice :           C'est pas logique", "\n- Deuxième indice :       Multiple de 2", "\n- troisième indice :        Ses diviseurs : 1, 2, 4, 29, 58", "\n- Quatrième indice :      En binarie : 1110100", "\n- Cinquième indice :     En hexadéciaml 74", "\n- Sixième indice:           Numération romaine : CXVI" };
-	float mariox;
+    int vrai[10] = { 4,2,3,3,5,2,2,3,2,4 };
+    String ch[10][7] = { {"\n                    VoilÃ  votre quiz :", "\n          Question : Quel est l'Ã¢ge de l'Univers?", "\n1- 6 000 ans", "\n2- 4,6 milliards d'annÃ©es", "\n3- 13,7 milliards d'annÃ©es", "\n4- L'Univers est Ã©ternel et existe depuis toujours."," "},//4 3- 13,7 milliards d'annÃ©es
+{"\n                    VoilÃ  votre quiz :", "\n          Question : Toutes les espÃ¨ces vivantes sur \n Terre possÃ¨dent :", "\n\n 1- de l ADN", "\n\n 2- les mÃªmes gÃ¨nes (le mÃªme gÃ©nome)", "\n\n3- un animal de compagnie", "\n\n4- Toutes ces rÃ©ponses."},//2 de l ADN
+{"\n                    VoilÃ  votre quiz :", "\n        Question : Lequel des langages informatiques \nsuivants est utilisÃ© pour l intelligence artificielle?", "\n\n1- PROLOG", "\n\n2- C", "\n\n3- FORTRAN", "\n\n4- COBOL"},//3  C
+{"\n                    VoilÃ  votre quiz :", "\n        Question : Le microprocesseur a Ã©tÃ© introduit \ndans quelle gÃ©nÃ©ration dâ€™ordinateur?", "\n\n1- DeuxiÃ¨me gÃ©nÃ©ration", "\n\n2- TroisiÃ¨me gÃ©nÃ©ration", "\n\n3- en 1942", "\n\n4- QuatriÃ¨me gÃ©nÃ©ration"},//3 TroisiÃ¨me gÃ©nÃ©ration
+{"\n                    VoilÃ  votre quiz :", "\n          ComplÃ¨ter : GUI signifie _______?", "\n1- Graph Use Interface", "\n2- Graphical Universal Interface", "\n3- Graphical User Interface", "\n4-Graphical Unique Interface",},//5 4-Graphical Unique Interface
+{"\n                    1Ã¨re question: :", "\n          Quelle ville est surnommÃ©e la FiancÃ©e de la MÃ©diterranÃ©eâ€‰?", "\n1- Alexandrie", "\n2- Tunis", "\n3- Marrakech", "\n4- Mauritanie","\n- Votre indice :           C'est pas logique"},
+{"\n                    2Ã©me question :", "\n          Quel fleuve traverse la ville de Lyon ?", "\n1- Le RhÃ´ne", "\n2- La seine", "\n3- Le Rhin", "\n","\n- Votre indice :           C'est pas logique"},
+{"\n                    3Ã©me question :", "\n          Quelle est la superficie approximative de la Tunisie ?", "\n1- 563 000 km2", "\n2- 163 000 km2", "\n3- 63 000 km2", "\n","\n- Votre indice :           C'est pas logique"},
+{"\n                    4Ã©me question :", "\n          Combien de planÃ¨tes existent dans le systÃ¨me solaire ?", "\n1- 8", "\n2- 9", "\n3- 10", "\n","\n- Votre indice :           C'est pas logique"},
+{"\n                    5Ã©me question :", "\n          quel acteur a le plus d'oscar ?", "\n1- Woody Allen", "\n2- Walt Disney", "\n3- Daniel Day-Lewis","\n- Votre indice :           C'est pas logique" }
+//{"\n                    6Ã¨me question : ", "     \n\nQuestion: Combien de temps a durÃ© la guerre \nde 100 ans ?", "\n\n\n1- 112", "\n\n\n2- 100", "\n\n\n3- 116", "\n\n\n4- 97"}//4 116
+    };
+    float mariox;
 	//end_kimo
 	float deltatime;
 	Mario mario;
@@ -40,10 +44,11 @@ public:
             float quizheure = 0;
             bool repeat = false;
             mongela.restart();
-            Quiz qind(800, 604, indices, ch);
+            Quiz qind(800, 604, ch);
             if (!music.openFromFile("./res/uni_music_play.ogg"))
                 cout << "Un probleme lors du chargement de la musique" << endl;
             music.setVolume(80);
+            int indvrai = 0;
             int level[] =
             {
                 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -113,14 +118,14 @@ public:
                 {
                     if (event.type == Event::KeyReleased && event.key.code == Keyboard::Up)
                     {
-                        if (quiz)
+                        if ((quiz) || (finalquiz))
                             qind.moveup();
                         else
                             menu.moveup(newgame, aboutus);
                     }
                     if (event.type == Event::KeyReleased && event.key.code == Keyboard::Down)
                     {
-                        if (quiz)
+                        if ((quiz)||(finalquiz))
                             qind.movedown();
                         else
                             menu.movedown(newgame, aboutus);
@@ -136,7 +141,7 @@ public:
                     }
                     if (event.type == Event::KeyReleased && event.key.code == Keyboard::Return)
                     {
-                        if (!quiz)
+                        if ((!quiz)&&(!finalquiz))
                         {
                             if (menu.getitempressed() == 1)
                             {
@@ -151,14 +156,22 @@ public:
                                 }
                             }
                         }
-                        else
+                        else 
                         {
-                            qind.repondre(vrai[0], window);
+                            if (finalquiz)
+                            {
+                                if (indvrai < 5)
+                                    indvrai = 5;
+                            }
+                                qind.repondre(vrai[indvrai], window,finalquiz);
+                                indvrai++;
                         }
                     }
                     if (event.type == Event::KeyReleased && event.key.code == Keyboard::Return && menu.getitempressed() == 2 && !(aboutus))
                     {
                         window.close();
+                        exit(1);
+                        repeat=false;
                     }
                     //end_yasmine
                     if (event.type == Event::Closed)
@@ -169,13 +182,21 @@ public:
                 }
                 if (newgame)
                 {
-                    if (quiz)
+                    if ((quiz)||(finalquiz))
                     {
-                        quizheure += deltatime;
-                        window.clear();
-                        qind.Settext(ch, mariox);
-                        qind.drawit(window, quizheure);
-                        qind.arreter(quizheure);
+                        if (quiz)
+                        {
+                            quizheure += deltatime;
+                            window.clear();
+                            qind.Settext(ch, mariox);
+                            qind.drawit(window, quizheure,mario);
+                            qind.arreter(quizheure);
+                        }
+                        else 
+                        {
+                            quizheure += deltatime;
+                            qind.finalquiz(ch,mariox,window,quizheure,finalquiz,mario);
+                        }   
                     }
                     else
                     {
@@ -198,14 +219,12 @@ public:
                         pause.drawit(window);
                         scoremenu.drawit(window);
                         cout << mario.getsp().getPosition().x << endl;
-                        cout << mario.getsp().getPosition().y << endl;
                     }
                     window.display();
                 }
                 else
                 {
                     menu.update(mario, music, camerax);
-                    cout << " menu affiche" << endl;
                     window.clear();
                     menu.drawmenu(window, aboutus);
                     window.display();
@@ -222,7 +241,6 @@ public:
                     
             }
         }
-        
     }
 };
 #endif;
