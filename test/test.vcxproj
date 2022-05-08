@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="adversaire.h" />
+    <ClInclude Include="gameover.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="scoremenu.h" />
     <ClInclude Include="mainmenu.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="mario.h" />
     <ClInclude Include="pause.h" />
     <ClInclude Include="quiz.h" />
+    <ClInclude Include="winmenu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

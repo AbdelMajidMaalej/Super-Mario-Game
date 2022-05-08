@@ -38,7 +38,6 @@ public:
 		pausetitle.setFillColor(Color::White);
 		pausetitle.setPosition(x+95, 290);
 	}
-
 	~Pausegame()
 	{
 	}

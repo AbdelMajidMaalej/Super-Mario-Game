@@ -101,6 +101,12 @@ public:
 			menu[0].setPosition(x - 240, 174);
 			menu[1].setPosition(x - 240, 304);
 			menu[2].setPosition(x - 190, 434);
+			parag.setPosition(x - 330, 124);
+			karim.setPosition(x - 270, 244);
+			yasmine.setPosition(x - 270, 294);
+			majid.setPosition(x - 270, 344);
+			retour.setPosition(x - 220, 494);
+
 		}
 		if (x > 2000)
 		{
@@ -108,6 +114,11 @@ public:
 			menu[0].setPosition(2000 - 240, 174);
 			menu[1].setPosition(2000 - 240, 304);
 			menu[2].setPosition(2000 - 190, 434);
+			parag.setPosition(2000 - 330, 124);
+			karim.setPosition(2000 - 270, 244);
+			yasmine.setPosition(2000 - 270, 294);
+			majid.setPosition(2000 - 270, 344);
+			retour.setPosition(2000 - 220, 494);
 		}
 	}
 	void moveup(bool test, bool aboutus)
@@ -144,6 +155,7 @@ public:
 	}
 	void drawmenu(RenderWindow& window, bool test)
 	{
+		window.draw(sbackgd);
 		if (!test)
 		{
 			window.draw(sbackgd);
@@ -159,6 +171,7 @@ public:
 			window.draw(yasmine);
 			window.draw(majid);
 			window.draw(retour);
+			cout << "temchy" << endl;
 		}
 	}
 	int getitempressed()
