@@ -106,7 +106,6 @@ public:
 			yasmine.setPosition(x - 270, 294);
 			majid.setPosition(x - 270, 344);
 			retour.setPosition(x - 220, 494);
-
 		}
 		if (x > 2000)
 		{

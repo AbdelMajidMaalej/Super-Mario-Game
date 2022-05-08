@@ -191,7 +191,7 @@ public:
 			fin = false;
 		}
 	}
-	void finalquiz(String ques[10][7], float posx,RenderWindow &window,float& heure,bool& final,Mario mario)
+	void Finalquiz(String ques[10][7], float posx,RenderWindow &window,float& heure,bool& final,Mario mario,bool &finalquiz)
 	{
 		if (indquiz < 5)
 			indquiz = 5;
@@ -201,8 +201,14 @@ public:
 			arreter(heure);
 			if (indquiz == 10)
 			{
+				finalquiz = false;
+				mario.death = false;
+				quiz = false;
 				if (bonnereponse > 2)
+				{
 					win = true;
+					cout << "win" << endl;
+				}
 				else mario.death = true;
 			}			
 	}

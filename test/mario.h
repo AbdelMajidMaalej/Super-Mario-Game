@@ -81,10 +81,6 @@ public:
 	}
 	void collision(int level[],bool& bonnereponse,bool finalquiz)
 	{
-		if ((velocity.y > 700)&&(!finalquiz))
-			death = true;
-		else
-		{
 			int i;
 			int top = sp.getGlobalBounds().top, left = sp.getGlobalBounds().left, right = left + 32, bottom = top + 48;
 			//collision bottom
@@ -174,9 +170,11 @@ public:
 			if (1437 < velocity.x < 1567)
 			{
 				ground = 1000;
+				if (velocity.y > 600)
+				{
+					death = true;
+				}
 			}
-			if ((velocity.y > 900) && (!under))
-				death = true;
 			//collision coin
 			for (int l = 0; l < 25; l++)
 			{
@@ -186,7 +184,6 @@ public:
 					level[crcoin] = 0;
 					coin++;
 				}
-			}
 		}	
 	}
 	void dead()

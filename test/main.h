@@ -34,7 +34,7 @@ private:
 	Sprite sp1, sp2, sp3, sp4, sp5, sp6;
 	Clock mongela;
 	Music music;
-    bool repeat = true,work=false;
+    bool repeat = true, work = false, youwon = false;
     int quizcoin;
     float camerax;
 public:
@@ -119,7 +119,7 @@ public:
                 scoremenu.SetText("MARIO   " + to_string(player) + "          score  " + to_string(mario.getscore()) + "         COIN    " + to_string(mario.getcoin()) + " - " + to_string(5) + "         TIME   " + to_string(int(heure)), mario);
                 deltatime = mongela.getElapsedTime().asSeconds();
                 mongela.restart();
-                if (!paused)
+                if ((!paused)&&(newgame))
                     heure += deltatime;
                 if (mario.isdead())
                     deathtime += deltatime;
@@ -157,6 +157,7 @@ public:
                             mario.death = false;
                             camerax = mario.getsp().getPosition().x;
                             aboutus = false;
+                            win = false;
                     }
                     if (event.type == Event::KeyReleased && event.key.code == Keyboard::Return)
                     {
@@ -196,11 +197,12 @@ public:
                     if (event.type == Event::Closed)
                     {
                         window.close();
-                    }
+                    }  
                     pause.update(event, mario, music);
                     overgame.update(mario, music);
                     winmenu.update(mario, music, win);
                 }
+                
                 if (newgame)
                 {
                     if ((quiz) || (finalquiz))
@@ -217,7 +219,7 @@ public:
                         {
                             quizheure += deltatime;
                             qind.setindice(mario.getcoin(), ch, indice);
-                            qind.finalquiz(ch, mariox, window, quizheure, finalquiz, mario);
+                            qind.Finalquiz(ch, mariox, window, quizheure, finalquiz, mario,finalquiz);
                         }
                     }
                     else
@@ -254,20 +256,23 @@ public:
                     menu.drawmenu(window, aboutus);
                     window.display();
                 }
-                if (mario.death)
+                if ((mario.death)&&(!finalquiz)&&(!youwon))
                 {
                     if (deathtime > 2)
                     {
                         overgame.drawover(window);
                         window.display();
                         work = true;
+                        cout << "met" << endl;
                     }
                 }
                 if (win)
                 {
                     winmenu.drawover(window);
                     window.display();
-                    work = true;
+                    cout << "rbah" << endl;
+                    youwon = true;
+
                 }
                 if (repeat)
                     break;
