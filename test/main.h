@@ -12,16 +12,16 @@ class Game
 {
 private:
     int vrai[10] = { 4,2,3,3,5,2,2,3,2,4 };
-    String indice[5] = { "\nA0","\nA1" ,"\nA2","\nA3","\nA4"};
+    String indice[5] = { "\n\nVotre indice : Dominée par les Perses\n        en 616.","Votre indice : Il parcourt 290 km \n      en Suisse." ,"Votre indice : Inférieur à 200 000 km2.","\nVotre indice : Multiple de 2.","Votre indice : Il est de nationalité britannique." };
     String ch[10][7] = { {"\n", "\n          Question : Quel est l'âge de l'Univers?", "\n1- 6 000 ans", "\n2- 4,6 milliards d'années", "\n3- 13,7 milliards d'années", "\n4- L'Univers est éternel et existe\n        depuis toujours."," "},//4 3- 13,7 milliards d'années
 {"\n", "\n          Question : Toutes les espèces vivantes sur \n Terre possèdent :", "\n\n 1- de l ADN", "\n\n 2- les mêmes gènes (le même génome)", "\n\n3- un animal de compagnie", "\n\n4- Toutes ces réponses."},//2 de l ADN
 {"\n", "\n        Question : Lequel des langages informatiques \nsuivants est utilisé pour l intelligence artificielle?", "\n\n1- PROLOG", "\n\n2- C", "\n\n3- FORTRAN", "\n\n4- COBOL"},//3  C
 {"\n", "\n        Question : Le microprocesseur a été introduit \ndans quelle génération d'ordinateur?", "\n\n1- Deuxième génération", "\n\n2- Troisième génération", "\n\n3- en 1942", "\n\n4- Quatrième génération"},//3 Troisième génération
 {"\n", "\n          Complèter : GUI signifie _______?", "\n1- Graph Use Interface", "\n2- Graphical Universal Interface", "\n3- Graphical User Interface", "\n4-Graphical Unique Interface",},//5 4-Graphical Unique Interface
-{"\n             1ère question :","\n          Quelle ville est surnommée la Fiancée de\n                             la Méditerranée ?", "\n1- Alexandrie", "\n2- Tunis", "\n3- Marrakech", "\n4- Mauritanie",""},
+{"\n             1ère question :","\n          Quelle ville est surnommée la Fiancée de\n      la Méditerranée ?", "\n\n1- Alexandrie", "\n\n2- Tunis", "\n\n3- Marrakech", "\n\n4- Mauritanie",""},
 {"\n             2éme question :", "\n          Quel fleuve traverse la ville de Lyon ?", "\n1- Le Rhône", "\n2- La seine", "\n3- Le Rhin", "\n",""},
 {"\n             3éme question :", "\n          Quelle est la superficie approximative de \n                           la Tunisie ?", "\n1- 563 000 km2", "\n2- 163 000 km2", "\n3- 63 000 km2", "\n",""},
-{"\n             4éme question :", "\n          Combien de planètes existent dans le\n      système solaire ?", "\n1- 8", "\n2- 9", "\n3- 10", "\n",""},
+{"\n             4éme question :", "\n          Combien de planètes existent dans le\n      système solaire ?", "\n\n1- 8", "\n\n2- 9", "\n\n3- 10", "",""},
 {"\n             5éme question :", "\n          Quel acteur a le plus d'oscar ?", "\n1- Woody Allen", "\n2- Walt Disney", "\n3- Daniel Day-Lewis","" }
 //{"\n                    6ème question : ", "     \n\nQuestion: Combien de temps a duré la guerre \nde 100 ans ?", "\n\n\n1- 112", "\n\n\n2- 100", "\n\n\n3- 116", "\n\n\n4- 97"}//4 116
     };
@@ -52,7 +52,6 @@ public:
             if (!music.openFromFile("./res/uni_music_play.ogg"))
                 cout << "Un probleme lors du chargement de la musique" << endl;
             music.setVolume(80);
-            int indvrai = 0;
             GAMEOVER overgame(window);
             Winmenu winmenu(window);
             float deathtime = 0;
@@ -184,6 +183,8 @@ public:
                             }
                             qind.repondre(vrai[indvrai], window, finalquiz);
                             indvrai++;
+                                
+
                         }
                     }
                     if (event.type == Event::KeyReleased && event.key.code == Keyboard::Return && menu.getitempressed() == 2 && !(aboutus))
@@ -216,6 +217,7 @@ public:
                         }
                         if (finalquiz)
                         {
+                            ajout = true;
                             quizheure += deltatime;
                             qind.setindice(mario.getcoin(), ch, indice);
                             qind.Finalquiz(ch, mariox, window, quizheure, mario,finalquiz);
@@ -275,6 +277,8 @@ public:
                 }
                 if (repeat)
                     break;
+                if (heure > 120)
+                    mario.death = true;
             }
         }
     }

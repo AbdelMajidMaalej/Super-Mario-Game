@@ -5,12 +5,12 @@
 #include <string.h>
 using namespace sf;
 using namespace std;
-int clicktime = 0;
-bool reponsetrue = false, win = false, menudeath = false;
+int clicktime = 0,indvrai = 0;
+bool reponsetrue = false, win = false, menudeath = false, ajout = true;
 class Quiz
 {
 private:
-	int selecteditemindex = 2,n=-1,quizcoin;
+	int selecteditemindex = 2,quizcoin;
 	int bonnereponse = 0;
 	Font font;
 	Text menu[7],reponse,time;
@@ -79,7 +79,6 @@ public:
 		if (getselected() == i)
 		{
 			menu[getselected()].setFillColor(Color::Green);
-			n++;
 			reponsetrue = true;
 			if (final)
 				bonnereponse++;
@@ -91,25 +90,27 @@ public:
 	{
 		if (rep)
 		{
-			if (heure > clicktime+3)
+			if (heure > clicktime + 3)
 			{
 				quiz = false;
 				rep = false;
-					indquiz++;
+				indquiz++;
 				heure = 0;
 				fin = true;
 				cout << "majda" << endl;
 			}
 		}
 		else
-		{	
+		{
 			clicktime = heure;
 			if ((heure > 10))
 			{
 				indquiz++;
+				cout << indquiz << endl;
 				quiz = false;
 				heure = 0;
 				fin = true;
+				indvrai++;
 				cout << "majda" << endl;
 			}
 		}
@@ -149,7 +150,6 @@ public:
 				{
 					menu[i].setPosition(Vector2f(x - 270, height / (max + 1) * i));
 					menu[i].setFillColor(Color::Blue);
-
 					break;
 				}
 				case 3:
@@ -174,17 +174,11 @@ public:
 				case 6:
 				{
 					menu[i].setPosition(Vector2f(x - 270, height / (max + 1) * i));
-					menu[i].setFillColor(Color::Black);
-					break;
-				}
-				case 7:
-				{
-					menu[i].setPosition(Vector2f(x - 350, height / (max + 1) * i));
-					menu[i].setFillColor(Color::Black);
 					break;
 				}
 				}
 				selecteditemindex = 2;
+				menu[6].setFillColor(Color::Magenta);
 			}
 			time.setPosition(x + 250, 50);
 			rep = false;
@@ -228,7 +222,6 @@ public:
 			}
 			retourcoin = false;
 		}
-		
 	}
 	void drawit(RenderWindow& window,float heure,Mario mario)
 	{
@@ -252,8 +245,7 @@ public:
 	}
 	void movedown()
 	{
-
-		if (selecteditemindex + 1 < max)
+		if (selecteditemindex + 1 < max-1)
 		{
 			menu[selecteditemindex].setFillColor(Color::Black);
 			selecteditemindex++;
