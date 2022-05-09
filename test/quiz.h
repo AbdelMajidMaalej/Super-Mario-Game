@@ -6,7 +6,7 @@
 using namespace sf;
 using namespace std;
 int clicktime = 0;
-bool reponsetrue = false, win = false;
+bool reponsetrue = false, win = false, menudeath = false;
 class Quiz
 {
 private:
@@ -191,26 +191,32 @@ public:
 			fin = false;
 		}
 	}
-	void Finalquiz(String ques[10][7], float posx,RenderWindow &window,float& heure,bool& final,Mario mario,bool &finalquiz)
+	void Finalquiz(String ques[10][7], float posx,RenderWindow &window,float& heure,Mario mario,bool &finalquiz)
 	{
-		if (indquiz < 5)
-			indquiz = 5;
+			if (indquiz < 5)
+				indquiz = 5;
 			window.clear();
 			Settext(ques, posx);
-			drawit(window, heure,mario);
+			drawit(window, heure, mario);
 			arreter(heure);
 			if (indquiz == 10)
 			{
 				finalquiz = false;
+				cout << "wfet" << endl;
 				mario.death = false;
 				quiz = false;
+				cout << bonnereponse << endl;
 				if (bonnereponse > 2)
 				{
 					win = true;
 					cout << "win" << endl;
 				}
-				else mario.death = true;
-			}			
+				else
+				{
+					menudeath = true;
+					cout << "enty khsaret" << endl;
+				}
+			}		
 	}
 	void setindice(int x, String ques[10][7],String indice[5])
 	{

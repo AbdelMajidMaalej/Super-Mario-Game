@@ -81,6 +81,7 @@ public:
 	}
 	void collision(int level[],bool& bonnereponse,bool finalquiz)
 	{
+			under = false;
 			int i;
 			int top = sp.getGlobalBounds().top, left = sp.getGlobalBounds().left, right = left + 32, bottom = top + 48;
 			//collision bottom
@@ -96,9 +97,8 @@ public:
 				{
 					isfalling = false;
 					canjump = true;
-					under = true;
-					if (velocity.y > 402)
-						velocity.y = 402;
+					if (velocity.x > 2344)
+						under = true;
 				}
 			}
 			if ((velocity.x > 1424) && (velocity.x < 1520))
@@ -177,7 +177,7 @@ public:
 					level[crcoin] = 0;
 					coin++;
 				}
-		}	
+			}
 	}
 	void dead()
 	{	
@@ -197,13 +197,9 @@ public:
 					facingright = true;
 					animation();
 				}
-				if (Keyboard::isKeyPressed(Keyboard::Down) && (under) && (2344 <sp.getPosition().x))
+				if (Keyboard::isKeyPressed(Keyboard::Down) && (under) && (2344 < sp.getPosition().x))
 				{
-					while (velocity.y < ground)
-					{
-						velocity.y += speed * deltatime;
-					}
-					if ((under)&&(velocity.y > ground))
+						velocity.x = 2440;
 						finalquiz = true;
 				}
 				if (sp.getPosition().x >= 0.0f && Keyboard::isKeyPressed(Keyboard::Left) && !(collf))
@@ -251,7 +247,7 @@ public:
 				if (isfalling)
 				{
 					anim.x = 1;
-					if (!deathunder)
+					if ((!deathunder)&&(!under))
 					{
 						if ((sp.getGlobalBounds().top + 15 > 402))
 						{
@@ -262,7 +258,7 @@ public:
 							velocity.y = 401;
 						}
 					}
-					if((sp.getGlobalBounds().top + 15 <= 402))
+					if((sp.getGlobalBounds().top + 15 <= 402)&&(!under))
 					{
 						velocity.y += gravity * 1.5f * deltatime * cof;
 						cof += 0.025;
