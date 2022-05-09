@@ -56,11 +56,16 @@ public:
 				music.pause();
 		}
 		x = mario.getsp().getPosition().x;
-		if (x > 400)
+		if ((x > 400)&&(x<2000))
 		{
 			container.setPosition(Vector2f(x - 130, 00.f));
 			pausetitle.setPosition(x-30, 290);
 		}	
+		if (x > 2000)
+		{
+			container.setPosition(Vector2f(2000 - 130, 00.f));
+			pausetitle.setPosition(2000 - 30, 290);
+		}
 	}
 	void drawit(RenderWindow& window)
 	{

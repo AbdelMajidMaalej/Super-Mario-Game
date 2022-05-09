@@ -37,7 +37,7 @@ public:
 		wintitle.setOrigin(wintitle.getLocalBounds().width / 2 + 15,
 		wintitle.getLocalBounds().height / 2 + 70);
 		wintitle.setCharacterSize(90);
-		wintitle.setFillColor(Color::Red);
+		wintitle.setFillColor(Color::Blue);
 		wintitle.setPosition(370, 150);
 
 		if (!click.loadFromFile("./res/sound_ex_machina_Button_Blip.ogg"))
