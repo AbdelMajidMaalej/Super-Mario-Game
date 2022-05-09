@@ -44,7 +44,6 @@ public:
 			cout << "probleme avec le sound" << endl;
 
 		clicksound.setBuffer(click);
-
 		go[0].setFont(font);
 		go[0].setCharacterSize(30);
 		go[0].setFillColor(Color::Black);

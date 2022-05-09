@@ -81,11 +81,9 @@ public:
             for (int i = 0; i < 75 * 19 - 1; i++)
                 level[i] -= 1;
             Map map("./res/tem.png");
-            if (!adv.loadFromFile("./res/adv1.png"))
-                cout << "Un probleme lors du chargement du bg" << endl;
-            sp1.setTexture(adv); sp2.setTexture(adv); sp3.setTexture(adv); sp4.setTexture(adv); sp5.setTexture(adv); sp6.setTexture(adv);
-            adv.setSmooth(true);
-            adversaire ad1(sp1, 400, 400), ad2(sp2, 450, 400), ad3(sp3, 800, 400), ad4(sp4, 850, 400), ad5(sp5, 1300, 400), ad6(sp6, 1000, 400);
+          
+      
+            adversaire ad1(400, 400), ad2(450, 400), ad3(800, 400), ad4(850, 400), ad5(1300, 400), ad6(1000, 400);
             window.setVerticalSyncEnabled(true);
             window.setFramerateLimit(60);
             Event event;
@@ -244,7 +242,6 @@ public:
                             ad2.draw(window); ad1.draw(window); ad3.draw(window); ad4.draw(window); ad5.draw(window); ad6.draw(window);
                             pause.drawit(window);
                             scoremenu.drawit(window);
-                            cout << mario.getsp().getPosition().x << endl;
                         }
                     }
                     window.display();

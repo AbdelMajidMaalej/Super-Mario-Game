@@ -13,41 +13,40 @@ class adversaire
 private:
 	float dx = 100;
 	bool fr = true, isfalling = false, mort = false;
-	Sprite adsp;
 	Vector2f pos;
 	Vector2i anim;
 	int etat = 0;
+	Texture adv;
+	Sprite sadv;
 public:
-	adversaire(Sprite sp,float x,float y)
+	adversaire(float x,float y)
 	{
 		anim.x = 0; anim.y = 0;
 		pos.x = x;
 		pos.y = y;
-		adsp = sp;
-		adsp.setTextureRect(IntRect(0, 0, 32, 32));
-	}
-	Sprite getsp()
-	{
-		return adsp;
+		if (!adv.loadFromFile("./res/adv1.png"))
+			cout << "Un probleme lors du chargement du bg" << endl;
+		adv.setSmooth(true);
+		sadv.setTexture(adv);
+		sadv.setTextureRect(IntRect(0, 0, 32, 32));
 	}
 	void animation()
 	{
-		if ((clo.getElapsedTime().asMilliseconds() >= 100)&&(etat==0))
+		if ((clo.getElapsedTime().asMilliseconds()%100 >= 80)&&(etat==0))
 		{
 			anim.x++;
 			if (anim.x == 2)
 				anim.x = 0;
-			adsp.setTextureRect(IntRect(anim.x * 32, anim.y * 32, 32, 32));
-			clo.restart();
+			sadv.setTextureRect(IntRect(anim.x * 32, anim.y * 32, 32, 32));
 		}
 	}
 	void collision(Mario& mario,int score)
 	{
-		if (((adsp.getPosition().y - 16) - (mario.getsp().getPosition().y + 24) < 20) && (abs(adsp.getPosition().x-mario.getsp().getPosition().x+16 )<16)&& !mort&& !mario.isdead())
+		if (((sadv.getPosition().y - 16) - (mario.getsp().getPosition().y + 24) < 20) && (abs(sadv.getPosition().x-mario.getsp().getPosition().x+16 )<16)&& !mort&& !mario.isdead())
 		{
 			if ((gr - mario.getsp().getPosition().y ) > 17)
 			{
-				adsp.setTextureRect(IntRect(2 * 32, 0, 32, 32));
+				sadv.setTextureRect(IntRect(2 * 32, 0, 32, 32));
 				mort = true;
 				mario.addscore();
 			}
@@ -63,7 +62,7 @@ public:
 			{
 				if (fr)
 				{
-					if (adsp.getPosition().x > x1)
+					if (sadv.getPosition().x > x1)
 					{
 						fr = false;
 					}
@@ -75,7 +74,7 @@ public:
 				}
 				else
 				{
-					if (adsp.getPosition().x < x0)
+					if (sadv.getPosition().x < x0)
 					{
 						fr = true;
 					}
@@ -104,8 +103,8 @@ public:
 	{
 		if (etat < 20)
 		{
-			adsp.setPosition(pos);
-			window.draw(adsp);
+			sadv.setPosition(pos);
+			window.draw(sadv);
 			if (mort)
 			{
 				etat++;

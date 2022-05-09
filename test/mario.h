@@ -9,7 +9,7 @@ using namespace std;
 using namespace sf;
 Vector2i anim(1, 1);
 Clock c;
-bool canjump = true, isjumping = false, isfalling = false, collr = false, collf = false, collj = false, facingright = true, deathjumping = false, deathfalling = false, under = false, quiz = false, finalquiz = false;
+bool canjump = true, isjumping = false,deathunder=false, isfalling = false, collr = false, collf = false, collj = false, facingright = true, deathjumping = false, deathfalling = false, under = false, quiz = false, finalquiz = false;
 float speed = 200, gravity = 130, ground = 401, jumptime, jumpduration = 0.45;
 float cof = 1, pos;
 int l, cr, crcoin, cl, cb;
@@ -84,25 +84,26 @@ public:
 			int i;
 			int top = sp.getGlobalBounds().top, left = sp.getGlobalBounds().left, right = left + 32, bottom = top + 48;
 			//collision bottom
-			for (l = 7; l < 27; l++)
+			for (l = 4; l < 27; l++)
 			{
 				cb = (((bottom + 7) / 32) * 75) + ((left + l) / 32);
 				if (level[cb] == 3 || level[cb] == 1 || level[cb] == 2 || level[cb] == 7 || level[cb] == 4 || level[cb] == 5 || level[cb] == 6 || level[cb] == 13 || level[cb] == 14)
 				{
 					isfalling = false;
 					canjump = true;
-					if (sp.getPosition().y + 16 > ground)
-					{
-						velocity.y = ground;
-					}
 				}
-				if (level[cb] == 11 || level[cb] == 12)
+				if ((level[cb] == 11 || level[cb] == 12))
 				{
-					under = true;
 					isfalling = false;
 					canjump = true;
+					under = true;
+					if (velocity.y > 402)
+						velocity.y = 402;
 				}
 			}
+			if ((velocity.x > 1424) && (velocity.x < 1520))
+				deathunder = true;
+			else deathunder = false;
 			//collision top cassable
 			int ctc;
 			if (facingright)
@@ -166,14 +167,6 @@ public:
 				cl = (((bottom - l) / 32) * 75) + ((left - 5) / 32);
 				if (level[cl] == 7 || level[cl] == 1 || level[cl] == 3 || level[cl] == 4 || level[cl] == 5 || level[cl] == 6 || level[cl] == 11 || level[cl] == 12 || level[cl] == 13 || level[cl] == 14 || level[cl] == 2)
 					collf = true;
-			}
-			if (1437 < velocity.x < 1567)
-			{
-				ground = 1000;
-				if (velocity.y > 600)
-				{
-					death = true;
-				}
 			}
 			//collision coin
 			for (int l = 0; l < 25; l++)
@@ -245,16 +238,31 @@ public:
 						cof = 1;
 					}
 				}
+				if (deathunder)
+				{
+					if (isfalling)
+					{
+						if (velocity.y > 600)
+						{
+							death = true;
+						}
+					}
+				}
 				if (isfalling)
 				{
 					anim.x = 1;
-					if (velocity.y > ground)
+					if (!deathunder)
 					{
-						isfalling = false;
-						canjump = true;
-						velocity.y= ground;
+						if ((sp.getGlobalBounds().top + 15 > 402))
+						{
+							cout << "yes" << endl;
+							isfalling = false;
+							canjump = true;
+							cout << sp.getGlobalBounds().top + 15 << endl;
+							velocity.y = 401;
+						}
 					}
-					else
+					if((sp.getGlobalBounds().top + 15 <= 402))
 					{
 						velocity.y += gravity * 1.5f * deltatime * cof;
 						cof += 0.025;
