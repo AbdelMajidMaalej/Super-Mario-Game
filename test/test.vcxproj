@@ -78,15 +78,15 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\abdel\source\repos\test\test\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\abdel\source\repos\test\test\lib;$(LibraryPath)</LibraryPath>
-    <PublicIncludeDirectories>C:\Users\abdel\source\repos\test\test\include;$(PublicIncludeDirectories)</PublicIncludeDirectories>
+    <IncludePath>C:\Users\Hmidi\OneDrive\Bureau\ensi\2éme semestre\8%29 Projet\version finale finale\Super-Mario-Game\test\include;C:\Users\abdel\source\repos\test\test\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Hmidi\OneDrive\Bureau\ensi\2éme semestre\8%29 Projet\version finale finale\Super-Mario-Game\test\lib;C:\Users\abdel\source\repos\test\test\lib;$(LibraryPath)</LibraryPath>
+    <PublicIncludeDirectories>C:\Users\Hmidi\OneDrive\Bureau\ensi\2éme semestre\8%29 Projet\version finale finale\Super-Mario-Game\test\include;C:\Users\abdel\source\repos\test\test\include;$(PublicIncludeDirectories)</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\abdel\source\repos\test\test\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\abdel\source\repos\test\test\lib;$(LibraryPath)</LibraryPath>
-    <PublicIncludeDirectories>C:\Users\abdel\source\repos\test\test\include;$(PublicIncludeDirectories)</PublicIncludeDirectories>
+    <IncludePath>C:\Users\Hmidi\OneDrive\Bureau\ensi\2éme semestre\8%29 Projet\version finale finale\Super-Mario-Game\test\include;C:\Users\abdel\source\repos\test\test\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Hmidi\OneDrive\Bureau\ensi\2éme semestre\8%29 Projet\version finale finale\Super-Mario-Game\test\lib;C:\Users\abdel\source\repos\test\test\lib;$(LibraryPath)</LibraryPath>
+    <PublicIncludeDirectories>C:\Users\Hmidi\OneDrive\Bureau\ensi\2éme semestre\8%29 Projet\version finale finale\Super-Mario-Game\test\include;C:\Users\abdel\source\repos\test\test\include;$(PublicIncludeDirectories)</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
