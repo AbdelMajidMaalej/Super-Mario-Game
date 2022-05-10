@@ -5,6 +5,7 @@
 #include <string.h>
 using namespace sf;
 using namespace std;
+//Declaraion Globale
 int clicktime = 0,indvrai = 0;
 bool reponsetrue = false, win = false, menudeath = false, ajout = true;
 class Quiz
@@ -17,7 +18,7 @@ private:
 	Texture bg;
 	Sprite sbg;
 	RectangleShape rec;
-	int width = 800, height = 604,indquiz=0;
+	int width = 800, height = 604, indquiz = 0, n = 0;
 	bool rep = false, fin = true, retourcoin = true;
 public:
 	const int max = 7;
@@ -65,28 +66,38 @@ public:
 			menu[2].setFillColor(Color::Blue);
 		}
 	}
+	//incremeter le nombre de coin collecté
 	void addquizcoin()
 	{
 		quizcoin++;
 	}
+	//decrementer le nombre de coin collecté
 	void subquizcoin()
 	{
 		quizcoin--;
 	}
-	void repondre(int i,RenderWindow &window,bool final)
+	//reponse au quiz
+	void repondre(int i,RenderWindow &window,bool final,bool &canclick)
 	{
-		rep = true;
-		if (getselected() == i)
+		if (n ==0)
 		{
-			menu[getselected()].setFillColor(Color::Green);
-			reponsetrue = true;
-			if (final)
-				bonnereponse++;
+			rep = true;
+			if (getselected() == i)
+			{
+				menu[getselected()].setFillColor(Color::Green);
+				reponsetrue = true;
+				if (final)
+					bonnereponse++;
+			}
+			else
+				menu[getselected()].setFillColor(Color::Red);
+			canclick = true;
+			n++;
 		}
-		else 
-			menu[getselected()].setFillColor(Color::Red);
+		
 	}
-	void arreter(float& heure)
+	//comportement du quiz apres la reponse
+	void arreter(float& heure,bool& canclick)
 	{
 		if (rep)
 		{
@@ -97,6 +108,7 @@ public:
 				indquiz++;
 				heure = 0;
 				fin = true;
+				canclick = false;
 				cout << "majda" << endl;
 			}
 		}
@@ -109,16 +121,19 @@ public:
 				cout << indquiz << endl;
 				quiz = false;
 				heure = 0;
-				fin = true;
 				indvrai++;
+				fin = true;
+				canclick = false;
 				cout << "majda" << endl;
 			}
 		}
 	}
+	//generation de la question suivante 
 	void Settext(String ques[10][7],float x)
 	{
 		if (fin)
 		{
+			n = 0;
 			if (x < 400)
 				x = 385;
 			if ((x > 1900) && (x<2100))
@@ -185,14 +200,15 @@ public:
 			fin = false;
 		}
 	}
-	void Finalquiz(String ques[10][7], float posx,RenderWindow &window,float& heure,Mario mario,bool &finalquiz)
+	//Quiz final
+	void Finalquiz(String ques[10][7], float posx,RenderWindow &window,float& heure,Mario mario,bool &finalquiz,bool &canclick)
 	{
 			if (indquiz < 5)
 				indquiz = 5;
 			window.clear();
 			Settext(ques, posx);
 			drawit(window, heure, mario);
-			arreter(heure);
+			arreter(heure,canclick);
 			if (indquiz == 10)
 			{
 				finalquiz = false;
@@ -212,6 +228,7 @@ public:
 				}
 			}		
 	}
+	//Afficher les indices
 	void setindice(int x, String ques[10][7],String indice[5])
 	{
 		if (retourcoin)
@@ -223,6 +240,7 @@ public:
 			retourcoin = false;
 		}
 	}
+	//Dessiner
 	void drawit(RenderWindow& window,float heure,Mario mario)
 	{
 		window.draw(sbg);
@@ -234,15 +252,17 @@ public:
 			time.setString(to_string(int(heure)));
 		window.draw(time);
 	}
+	//Button up
 	void moveup()
 	{
+		
 		if (selecteditemindex - 1 >= 2)
-		{
-			menu[selecteditemindex].setFillColor(Color::Black);
+		{menu[selecteditemindex].setFillColor(Color::Black);
 			selecteditemindex--;
 			menu[selecteditemindex].setFillColor(Color::Blue);
 		}
 	}
+	//Button down
 	void movedown()
 	{
 		if (selecteditemindex + 1 < max-1)
@@ -252,6 +272,7 @@ public:
 			menu[selecteditemindex].setFillColor(Color::Blue);
 		}
 	}
+	//Selectionner une reponse
 	int getselected()
 	{
 		return (selecteditemindex);

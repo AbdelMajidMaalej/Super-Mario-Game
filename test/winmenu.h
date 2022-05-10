@@ -21,7 +21,7 @@ private:
 	Sprite sbg;
 public:
 	Winmenu(RenderWindow& window)
-	{	//init background
+	{	
 		if (!bg.loadFromFile("./res/win.png"))
 			cout << "Un probleme de chargement pic Win" << endl;
 		sbg.setTexture(bg);
@@ -60,10 +60,12 @@ public:
 	~Winmenu()
 	{
 	}
+	//Boutton Main menu
 	int getitempressed()
 	{
 		return selecteditm;
 	}
+	//Update le Winmenu en fct de la position X de mario 
 	void update(Mario& mario, Music& music,bool win)
 	{
 		if (win)
@@ -88,6 +90,7 @@ public:
 
 		}
 	}
+	//dessiner
 	void drawover(RenderWindow& window)
 	{
 		window.clear();

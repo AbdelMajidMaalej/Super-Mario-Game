@@ -85,6 +85,7 @@ public:
 	~mainmenu()
 	{
 	}
+	//Update main menu 
 	void update(Mario& mario, Music& music,float x)
 	{
 		if (mario.isdead())
@@ -120,6 +121,7 @@ public:
 			retour.setPosition(2000 - 220, 494);
 		}
 	}
+	//Button up
 	void moveup(bool test, bool aboutus)
 	{
 		if (!aboutus)
@@ -136,6 +138,7 @@ public:
 			}
 		}
 	}
+	//Button down
 	void movedown(bool test, bool aboutus)
 	{
 		if (!aboutus)
@@ -152,6 +155,7 @@ public:
 			}
 		}
 	}
+	// Dessinr
 	void drawmenu(RenderWindow& window, bool test)
 	{
 		window.draw(sbackgd);
@@ -173,6 +177,7 @@ public:
 			cout << "temchy" << endl;
 		}
 	}
+	//choisir un boutton
 	int getitempressed()
 	{
 		return selecteditm;

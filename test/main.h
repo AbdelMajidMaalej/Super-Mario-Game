@@ -11,7 +11,7 @@
 class Game
 {
 private:
-    int vrai[10] = { 4,2,3,3,5,2,2,3,2,4 };
+    int vrai[10] = {4,2,3,3,5,2,2,3,2,4 };
     String indice[5] = { "\n\nVotre indice : Dominée par les Perses\n        en 616.","Votre indice : Il parcourt 290 km \n      en Suisse." ,"Votre indice : Inférieur à 200 000 km2.","\nVotre indice : Multiple de 2.","Votre indice : Il est de nationalité britannique." };
     String ch[10][7] = { {"\n", "\n          Question : Quel est l'âge de l'Univers?", "\n1- 6 000 ans", "\n2- 4,6 milliards d'années", "\n3- 13,7 milliards d'années", "\n4- L'Univers est éternel et existe\n        depuis toujours."," "},//4 3- 13,7 milliards d'années
 {"\n", "\n          Question : Toutes les espèces vivantes sur \n Terre possèdent :", "\n\n 1- de l ADN", "\n\n 2- les mêmes gènes (le même génome)", "\n\n3- un animal de compagnie", "\n\n4- Toutes ces réponses."},//2 de l ADN
@@ -23,10 +23,10 @@ private:
 {"\n             3éme question :", "\n          Quelle est la superficie approximative de \n                           la Tunisie ?", "\n1- 563 000 km2", "\n2- 163 000 km2", "\n3- 63 000 km2", "\n",""},
 {"\n             4éme question :", "\n          Combien de planètes existent dans le\n      système solaire ?", "\n\n1- 8", "\n\n2- 9", "\n\n3- 10", "",""},
 {"\n             5éme question :", "\n          Quel acteur a le plus d'oscar ?", "\n1- Woody Allen", "\n2- Walt Disney", "\n3- Daniel Day-Lewis","" }
-//{"\n                    6ème question : ", "     \n\nQuestion: Combien de temps a duré la guerre \nde 100 ans ?", "\n\n\n1- 112", "\n\n\n2- 100", "\n\n\n3- 116", "\n\n\n4- 97"}//4 116
     };
+
+    //Declaration Globale
     float mariox;
-	//end_kimo
 	float deltatime;
 	Mario mario;
 	View view;
@@ -37,13 +37,16 @@ private:
     bool repeat = true, work = false, youwon = false;
     int quizcoin;
     float camerax;
+    //fin declaration
 public:
     void lancerjeu()
     {
         RenderWindow window(VideoMode(800, 608, 32), "Super Mario");
         while (repeat)
         {
+            //Déclaration chaque game
             mario.mariorestart(window);
+            bool canclick = true;
             view.reset((FloatRect(0, 0, 800, 608)));
             float quizheure = 0;
             bool repeat = false;
@@ -80,8 +83,6 @@ public:
             for (int i = 0; i < 75 * 19 - 1; i++)
                 level[i] -= 1;
             Map map("./res/tem.png");
-          
-      
             adversaire ad1(400, 400), ad2(450, 400), ad3(800, 400), ad4(850, 400), ad5(1300, 400), ad6(1000, 400);
             window.setVerticalSyncEnabled(true);
             window.setFramerateLimit(60);
@@ -96,7 +97,6 @@ public:
             sbg.setTexture(bg);
             bg.setSmooth(true);
             Pausegame pause(window);
-            //yasmine
             mainmenu menu;
             bool newgame = false, aboutus = false;
             Text txt, tx;
@@ -106,13 +106,10 @@ public:
             int world = 0;
             int player = 0;
             float heure = 0;
-            //end_yasmine
+            //end Declaration chaque game
             while (window.isOpen())
             {
-                //kimo
                 mariox = mario.getsp().getPosition().x;
-                //end_kimo
-                //yasmine
                 scoremenu.SetText("MARIO   " + to_string(player) + "          score  " + to_string(mario.getscore()) + "         COIN    " + to_string(mario.getcoin()) + " - " + to_string(5) + "         TIME   " + to_string(int(heure)), mario);
                 deltatime = mongela.getElapsedTime().asSeconds();
                 mongela.restart();
@@ -122,6 +119,7 @@ public:
                     deathtime += deltatime;
                 while (window.pollEvent(event))
                 {
+                    //Events
                     if (event.type == Event::KeyReleased && event.key.code == Keyboard::Up)
                     {
                         if ((quiz) || (finalquiz))
@@ -181,8 +179,14 @@ public:
                                 if (indvrai < 5)
                                     indvrai = 5;
                             }
-                            qind.repondre(vrai[indvrai], window, finalquiz);
-                            indvrai++;
+                            qind.repondre(vrai[indvrai], window, finalquiz,canclick);
+                            if (canclick)
+                            {
+                                indvrai++;
+                                canclick = false;
+                            }
+                            
+                            
                                 
 
                         }
@@ -193,7 +197,6 @@ public:
                         exit(1);
                         repeat = false;
                     }
-                    //end_yasmine
                     if (event.type == Event::Closed)
                     {
                         window.close();
@@ -201,30 +204,32 @@ public:
                     pause.update(event, mario, music);
                     overgame.update(mario, music);
                     winmenu.update(mario, music, win);
+                    //end Events
                 }
-                
                 if (newgame)
                 {
                     if ((quiz) || (finalquiz)||(win))
                     {
-                        if (quiz)
+                        if ((quiz))
+                            //Question box
                         {
                             quizheure += deltatime;
                             window.clear();
                             qind.Settext(ch, mariox);
                             qind.drawit(window, quizheure, mario);
-                            qind.arreter(quizheure);
+                            qind.arreter(quizheure,canclick);
                         }
                         if (finalquiz)
+                            //Quiz final
                         {
-                            ajout = true;
                             quizheure += deltatime;
                             qind.setindice(mario.getcoin(), ch, indice);
-                            qind.Finalquiz(ch, mariox, window, quizheure, mario,finalquiz);
+                            qind.Finalquiz(ch, mariox, window, quizheure, mario,finalquiz,canclick);
                         }
                     }
                     else
                     {
+                        //Super Mario
                         if (deathtime < 2)
                         {
                             ad1.update(level, deltatime, mario, 0, 525, pause.ispaused(), mario.getscore()); ad2.update(level, deltatime, mario, 50, 575, pause.ispaused(), mario.getscore()); ad3.update(level, deltatime, mario, 739, 1068, pause.ispaused(), mario.getscore()); ad4.update(level, deltatime, mario, 789, 1118, pause.ispaused(), mario.getscore()); ad6.update(level, deltatime, mario, 1729, 2047, pause.ispaused(), mario.getscore()); ad5.update(level, deltatime, mario, 2111, 2304, pause.ispaused(), mario.getscore());
@@ -251,6 +256,7 @@ public:
                 }
                 else
                 {
+                    //Main Menu
                     menu.update(mario, music, camerax);
                     window.clear();
                     menu.drawmenu(window, aboutus);
@@ -258,6 +264,7 @@ public:
                 }
                 if (((mario.death)&&(!finalquiz)&&(!youwon))||(menudeath))
                 {
+                    //GameOver
                     if (deathtime > 2)
                     {
                         overgame.drawover(window);
@@ -268,6 +275,7 @@ public:
                 }
                 if (win)
                 {
+                    //GameWon
                     winmenu.drawover(window);
                     window.display();
                     cout << "rbah" << endl;
@@ -275,8 +283,10 @@ public:
                     work = true;
 
                 }
+                //Repeter le jeu
                 if (repeat)
                     break;
+                //Temps
                 if (heure > 120)
                     mario.death = true;
             }

@@ -6,6 +6,7 @@
 #include "mario.h"
 using namespace std;
 using namespace sf;
+//Declaration Globale
 float gr = 415, gra = 130;
 Clock clo;
 class adversaire
@@ -30,6 +31,7 @@ public:
 		sadv.setTexture(adv);
 		sadv.setTextureRect(IntRect(0, 0, 32, 32));
 	}
+	//animation
 	void animation()
 	{
 		if ((clo.getElapsedTime().asMilliseconds()%100 >= 80)&&(etat==0))
@@ -40,6 +42,7 @@ public:
 			sadv.setTextureRect(IntRect(anim.x * 32, anim.y * 32, 32, 32));
 		}
 	}
+	//collision mario et adversaire
 	void collision(Mario& mario,int score)
 	{
 		if (((sadv.getPosition().y - 16) - (mario.getsp().getPosition().y + 24) < 20) && (abs(sadv.getPosition().x-mario.getsp().getPosition().x+16 )<16)&& !mort&& !mario.isdead())
@@ -53,6 +56,7 @@ public:
 			else mario.dead();
 		}
 	}
+	//update des mouvements des adversaires
 	void update(int level[], float deltatime,Mario& mario,int x0,int x1,bool pause,int score)
 	{
 		if (!pause)
@@ -99,6 +103,7 @@ public:
 			}
 		}
 	}
+	//dessiner
 	void draw(RenderWindow& window)
 	{
 		if (etat < 20)
@@ -111,6 +116,7 @@ public:
 			}
 		}		
 	}
+	//supprimer l'adversaire apres son mort
 	bool supp()
 	{
 		if (mort && etat == 2)

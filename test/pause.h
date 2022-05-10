@@ -5,6 +5,7 @@
 #include <SFML/Audio.hpp>
 using namespace sf;
 using namespace std;
+//Declaration Globale
 bool paused = false;
 int x = 0;
 class Pausegame
@@ -41,10 +42,12 @@ public:
 	~Pausegame()
 	{
 	}
+	//getter paused
 	bool ispaused()
 	{
 		return paused;
 	}
+	//Update pause selon la position x de Mario
 	void update(Event event,Mario& mario,Music& music)
 	{
 		if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape )
@@ -67,6 +70,7 @@ public:
 			pausetitle.setPosition(2000 - 30, 290);
 		}
 	}
+	//dessiner
 	void drawit(RenderWindow& window)
 	{
 		if (paused)

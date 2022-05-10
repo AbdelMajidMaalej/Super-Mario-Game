@@ -7,6 +7,7 @@
 #include "adversaire.h"
 using namespace std;
 using namespace sf;
+//Declaration globale
 Vector2i anim(1, 1);
 Clock c;
 bool canjump = true, isjumping = false,deathunder=false, isfalling = false, collr = false, collf = false, collj = false, facingright = true, deathjumping = false, deathfalling = false, under = false, quiz = false, finalquiz = false;
@@ -35,26 +36,32 @@ public:
 		draw(window);
 		sp.setTextureRect(IntRect(0, 0, 32, 48));
 	}
+	//initialiser le score
 	void resetscore()
 	{
 		score = 0;
 	}
+	//getter score
 	int getscore()
 	{
 		return score;
 	}
+	//initialiser le nombre de coins
 	void resetcoin()
 	{
 		coin = 0;
 	}
+	//Tuer un ennemie
 	void addscore()
 	{
 		score += 100;
 	}
+	//afficher un indice
 	void subcoin()
 	{
 		coin--;
 	}
+	//getter coin
 	int getcoin()
 	{
 		return coin;
@@ -71,14 +78,17 @@ public:
 		velocity.x = 100; velocity.y = ground;
 		sp.setTextureRect(IntRect(0, 0, 32, 48));
 	}
+	//getter Texture mario
 	Texture gettex()
 	{
 		return tex;
 	}
+	//getter Sprite mario
 	Sprite getsp()
 	{
 		return sp;
 	}
+	//Collision Mario avec la map
 	void collision(int level[],bool& bonnereponse,bool finalquiz)
 	{
 			under = false;
@@ -101,7 +111,8 @@ public:
 						under = true;
 				}
 			}
-			if ((velocity.x > 1424) && (velocity.x < 1520))
+			//Trou map
+			if ((velocity.x > 1424) && (velocity.x < 1580))
 				deathunder = true;
 			else deathunder = false;
 			//collision top cassable
@@ -179,11 +190,13 @@ public:
 				}
 			}
 	}
+	//Mort mario
 	void dead()
 	{	
 		death = true;
 		deathjumping = true;
 	}
+	//Update des mouvements de Mario ( chaque frame )
 	void update(float deltatime, int level[],bool pause,bool& bonnereponse)
 	{
 		if (!pause)
@@ -244,21 +257,33 @@ public:
 						}
 					}
 				}
+				if (deathunder)
+				{
+					if (velocity.y > 400)
+						isfalling = true;
+				}
 				if (isfalling)
 				{
 					anim.x = 1;
-					if ((!deathunder)&&(!under))
+					if (!under)
 					{
 						if ((sp.getGlobalBounds().top + 15 > 402))
 						{
-							cout << "yes" << endl;
-							isfalling = false;
-							canjump = true;
-							cout << sp.getGlobalBounds().top + 15 << endl;
-							velocity.y = 401;
+							if (!deathunder)
+							{
+								isfalling = false;
+								canjump = true;
+								velocity.y = 401;
+							}
+							
 						}
 					}
-					if((sp.getGlobalBounds().top + 15 <= 402)&&(!under))
+					if((sp.getGlobalBounds().top + 15 <= 402)&&(!under)&&(!deathunder))
+					{
+						velocity.y += gravity * 1.5f * deltatime * cof;
+						cof += 0.025;
+					}
+					if (deathunder)
 					{
 						velocity.y += gravity * 1.5f * deltatime * cof;
 						cof += 0.025;
@@ -300,6 +325,7 @@ public:
 			}
 		}
 	}
+	//Animation des mouvements de Mario
 	void animation()
 	{
 		if (c.getElapsedTime().asMilliseconds() >= 100)
@@ -311,11 +337,13 @@ public:
 			c.restart();
 		}
 	}
+	//Dessiner
 	void draw(RenderWindow& window)
 	{
 		sp.setPosition(velocity);
 		window.draw(sp);
 	}
+	//getter death
 	bool isdead()
 	{
 		return death;

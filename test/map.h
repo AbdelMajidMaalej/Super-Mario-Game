@@ -23,6 +23,7 @@ public:
         c.setSmooth(true);
         spri.setTexture(c);
     }
+    //Construire la map
     void construire(int level[],RenderWindow& window)
     {
             for (int i = 0; i < 1425; i++)
@@ -47,6 +48,7 @@ public:
                 }   
             }
     }
+    //Update map ( chaque fram )
     void updatemap(int* level,float deltatime)
     {
         temps += deltatime;
@@ -67,6 +69,7 @@ public:
         }
         
     }
+    //Dessiner
     void draw(RenderWindow& window)
     {
         window.draw(spri);

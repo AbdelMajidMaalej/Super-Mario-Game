@@ -18,6 +18,7 @@ public:
             cout << "un probleme de chargement" << endl;
         }
     }
+    //Update le Score selon la position x de Mario
     void SetText(string ch,Mario& mario)
     {
         posx = mario.getsp().getPosition().x;
@@ -36,6 +37,7 @@ public:
             txt.setFillColor(Color::White);
         }
     }
+    //Dessiner
     void drawit(RenderWindow& window)
     {
         window.draw(txt);
