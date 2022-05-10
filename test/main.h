@@ -50,6 +50,7 @@ public:
             view.reset((FloatRect(0, 0, 800, 608)));
             float quizheure = 0;
             bool repeat = false;
+            indvrai = 0;
             mongela.restart();
             Quiz qind(800, 604, ch);
             if (!music.openFromFile("./res/uni_music_play.ogg"))
@@ -270,7 +271,6 @@ public:
                         overgame.drawover(window);
                         window.display();
                         work = true;
-                        cout << "met" << endl;
                     }
                 }
                 if (win)
@@ -278,7 +278,6 @@ public:
                     //GameWon
                     winmenu.drawover(window);
                     window.display();
-                    cout << "rbah" << endl;
                     youwon = true;
                     work = true;
 

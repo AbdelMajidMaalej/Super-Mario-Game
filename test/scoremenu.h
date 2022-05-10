@@ -25,7 +25,7 @@ public:
         if (posx < 400)
             txt.setPosition(90, 20);
         if (posx>2000)
-            txt.setPosition(1677, 20);
+            txt.setPosition(1690, 20);
         if ((posx<2000)&&(posx>400))
             txt.setPosition(Vector2f(posx - 310, 20.f));
         txt.setFont(font);

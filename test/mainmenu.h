@@ -29,7 +29,7 @@ public:
 
 		clicksound.setBuffer(click);
 		if (!font.loadFromFile("./res/Cafe-Matcha.ttf"))
-			std::cout << "Un probleme lors du chargement du font" << endl;
+			cout << "Un probleme lors du chargement du font" << endl;
 		menu[0].setFont(font);
 		menu[0].setCharacterSize(65);
 		menu[0].setFillColor(Color::White);
@@ -174,7 +174,6 @@ public:
 			window.draw(yasmine);
 			window.draw(majid);
 			window.draw(retour);
-			cout << "temchy" << endl;
 		}
 	}
 	//choisir un boutton

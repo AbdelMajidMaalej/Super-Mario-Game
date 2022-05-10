@@ -109,7 +109,6 @@ public:
 				heure = 0;
 				fin = true;
 				canclick = false;
-				cout << "majda" << endl;
 			}
 		}
 		else
@@ -118,13 +117,11 @@ public:
 			if ((heure > 10))
 			{
 				indquiz++;
-				cout << indquiz << endl;
 				quiz = false;
 				heure = 0;
 				indvrai++;
 				fin = true;
 				canclick = false;
-				cout << "majda" << endl;
 			}
 		}
 	}
@@ -141,7 +138,6 @@ public:
 			if ((x > 2200))
 				x = 1985;
 			sbg.setPosition(x - 385, 0);
-			cout << "kimoooooooo" << endl;
 			for (int i = 0; i < max; i++)
 			{
 				menu[i].setFont(font);
@@ -153,7 +149,6 @@ public:
 				case 0:
 				{
 					menu[i].setPosition(Vector2f(x - 130, height / (max + 1) * i));
-					cout << "yasmine" << endl;
 					break;
 				}
 				case 1:
@@ -212,19 +207,16 @@ public:
 			if (indquiz == 10)
 			{
 				finalquiz = false;
-				cout << "wfet" << endl;
 				mario.death = false;
 				quiz = false;
 				cout << bonnereponse << endl;
 				if (bonnereponse > 2)
 				{
 					win = true;
-					cout << "win" << endl;
 				}
 				else
 				{
 					menudeath = true;
-					cout << "enty khsaret" << endl;
 				}
 			}		
 	}
