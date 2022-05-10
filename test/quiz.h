@@ -200,6 +200,7 @@ public:
 	{
 			if (indquiz < 5)
 				indquiz = 5;
+				
 			window.clear();
 			Settext(ques, posx);
 			drawit(window, heure, mario);
@@ -268,6 +269,10 @@ public:
 	int getselected()
 	{
 		return (selecteditemindex);
+	}
+	void setselecteditemindex()
+	{
+		selecteditemindex = 2;
 	}
 };
 #endif;
